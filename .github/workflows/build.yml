@@ -1,0 +1,14 @@
+name: Build SG
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+      - name: Build
+        run: msbuild SG.sln /p:Configuration=Release /p:Platform="Any CPU"
